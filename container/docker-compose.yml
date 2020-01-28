@@ -1,0 +1,72 @@
+version: "3"
+services:
+  unit-php-73:
+    build:
+      context: ./unit/php/7.3
+      dockerfile: Dockerfile
+    container_name: unit-php-73
+    volumes:
+      - ./unit/php/7.3/config.json:/docker-entrypoint.d/config.json
+      - ../projects/project1Name:/code/project1Name
+      - ../projects/project2Name:/code/project2Name
+      - ./logs/php/7.3:/var/log/
+    links:
+      - mysql-57
+    ports:
+      - "8080:8080" # project 1
+      - "8081:8081" # project 2
+  mysql-57:
+    build:
+      context: ./mysql/5.7
+      dockerfile: Dockerfile
+    container_name: mysql-57
+    volumes:
+      - ./mysql/5.7/data:/var/lib/mysql
+      - ./logs/mysql/5.7:/var/log/
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+#   web:
+#     build:
+#       context: ./nginx
+#       dockerfile: Dockerfile
+#     container_name: web
+#     volumes:
+#       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+#       - ./nginx/sites:/etc/nginx/conf.d
+#       - ./log/:/var/log/
+#       - ./learn:/learn
+#       - ../web:/code
+#     links:
+#       - php
+#     ports:
+#       - "80:80"
+#       - "443:443"
+#   php:
+#     build:
+#       context: ./php
+#       dockerfile: Dockerfile
+#     container_name: php
+#     volumes:
+#       - ./php/:/usr/local/etc/php/php.ini
+#       - ./php/mods-available:/usr/local/etc/php/conf.d
+#       - ../web:/code
+#       - ./learn:/learn
+#       - ./log/:/var/log/
+#     links:
+#       - mysql
+#     ports:
+#       - "9000:9000"
+# mysql:
+#   build:
+#     context: ./mysql
+#     dockerfile: Dockerfile
+#   container_name: mysql
+#   volumes:
+#     - ./data:/var/lib/mysql
+#     - ./log/:/var/log/
+#   ports:
+#     - "3306:3306"
+#   environment:
+#     MYSQL_ROOT_PASSWORD: secret
