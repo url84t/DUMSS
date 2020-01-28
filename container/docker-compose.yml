@@ -27,6 +27,20 @@ services:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: secret
+  proxy:
+    build:
+      context: ./proxy
+      dockerfile: Dockerfile
+    container_name: proxy
+    volumes:
+      - ./proxy/supdocs/nginx.conf:/etc/nginx/nginx.conf
+      - ./proxy/supdocs/sites:/etc/nginx/conf.d
+      - ./logs/proxy:/var/log
+    ports:
+      - "80:80"
+      - "443:443"
+    links:
+      - unit-php-73
 #   web:
 #     build:
 #       context: ./nginx
