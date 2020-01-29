@@ -17,10 +17,10 @@
 
 ## Basic setup information
 
-./container/unit contains the unit containers for each language separated by version
-./container/mysql contains the mysql containers separated by version
-./container/proxy contains the nginx configuration for converting server names to applications served by nginx unit
-./projects is where you will add your git repo projects (.gitignore is set to ignore anything under projects)
+> ./container/unit contains the unit containers for each language separated by version
+> ./container/mysql contains the mysql containers separated by version
+> ./container/proxy contains the nginx configuration for converting server names to applications served by nginx unit
+> ./projects is where you will add your git repo projects (.gitignore is set to ignore anything under projects)
 
 
 git clone https://github.com/url84t/DUMSS.git
