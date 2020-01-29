@@ -2,6 +2,10 @@
 
 <!-- [![AhaWare](https://burningwiki.com/w/images/9/97/BZS_Principles_RadicalSelfReliance_001.jpeg)](https://ahaware.com) -->
 
+> version 0.0.1
+> php 7.3 only current tested config
+
+
 # DUMSS
 
 > Docker Unit Multi Site System
@@ -9,6 +13,28 @@
 > Using the power of Docker and NGINX Unit to serve up simple shared hosting systems for flexible varied technology web services
 
 > Docker, NGINX, NGINX UNIT, golang, PHP, Nodejs, python
+
+
+## Basic setup information
+
+./container/unit contains the unit containers for each language separated by version
+./container/mysql contains the mysql containers separated by version
+./container/proxy contains the nginx configuration for converting server names to applications served by nginx unit
+./projects is where you will add your git repo projects (.gitignore is set to ignore anything under projects)
+
+
+git clone https://github.com/url84t/DUMSS.git
+cd DUMSS/projects
+- clone your project under this directory
+- change the ./container/unit/php/7.3/config.json to reflect your project directory name/path
+- add a ./container/proxy/supdocs/sites/ conf file (use the example.conf and example2.conf as ... examples)
+
+run 'docker-compose up --build -d' from the ./container directory
+
+add the domain name of your project (changed in the sites conf file) to your hosts file pointing to 127.0.0.1
+
+navigate to the domain name of your project.
+
 
 <!-- **Badges will go here**
 
